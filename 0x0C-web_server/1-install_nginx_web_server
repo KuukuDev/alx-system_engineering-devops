@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 # install nginx and adjust default homepage
-apt-get -y update
-apt-get -y install nginx
-sed -i "21s/^listen .*/listen 80" /etc/nginx/sites-enabled/defult
-ufw allow 'Nginx HTTP'
-echo Hello World! > /var/www/html/index.nginx-debian.html
-service nginx start
+
+sudo apt-get update
+sudo apt-get install nginx
+sudo ufw 'Nginx HTTP'
+
+echo "Hello world!" | sudo tee /var/www/html/index.html
+
+sudo nginx -t
+
+sudo service nginx reload
